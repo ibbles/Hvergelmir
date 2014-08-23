@@ -102,3 +102,34 @@ class StackFrame(object):
     return not self.__eq__(other)
 
 
+
+
+
+class Stack(object):
+  """An ordered list of stack frames."""
+
+  
+  ## Stacks are bulit incrementally as frames are read from the file. The
+  ## stack object is therefore initialized empty.
+  def __init__(self):
+
+    ## Frames are stored top-to-bottom, so  frames[0] is the method that caused
+    ## the error and frames[-1] is usually the stack frame for main.
+    self.frames = [] # StackFrame[]
+
+
+
+
+  def setLocation(self, stackFrame): # None
+    """Put the given stack frame at the top of the stack."""
+
+    self.frames.insert(0, stackFrame);
+
+
+
+  def addCaller(self, stackFrame): # None
+    """Add another caller at the bottom of the call stack. The last addCaller
+    call usually adds the stack frame for main.
+    """
+
+    self.frames.append(stackFrame)
