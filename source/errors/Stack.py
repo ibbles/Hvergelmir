@@ -1,5 +1,4 @@
 """
-
 Classes representing a call stack. It holds data extracted from one line of a
 call stack printed by Valgrind.
 
@@ -15,18 +14,21 @@ patterns = Patterns()
 class StackFrame(object):
   """A single stack frame within a call stack. Knows where in the applicaion it is."""
 
-  address = None
-  method = None
-  arguments = None
-  modifier = None
-  fileName = None
-  lineNumber = None
-  library = None
-
 
 
   def __init__(self, line):
-    """Create a stack frame from a Valgrind log line."""
+    """Create a stack frame from a Valgrind log line.
+    \param line - String
+    """
+
+    address = None # String
+    method = None # String
+    arguments = None # String
+    modifier = None # String
+    fileName = None # String
+    lineNumber = None # Integer
+    library = None # String
+
 
     match = patterns.isAnyStackFrame.match(line)
     if match != None:
@@ -40,8 +42,10 @@ class StackFrame(object):
 
 
 
-  def fileLocation(self):
-    """Construct a human readable string describing the file location that the stack frame represents."""
+  def fileLocation(self): # String
+    """Construct a human readable string describing the file location that the
+    stack frame represents.
+    """
 
     if self.fileName != None and self.lineNumber != None:
       return self.fileName + ":" + self.lineNumber
@@ -56,8 +60,10 @@ class StackFrame(object):
 
 
 
-  def fullMethod(self):
-    """Create a human readable string describing the method that the stack frame represents."""
+  def fullMethod(self): # String
+    """Create a human readable string describing the method that the stack frame
+    represents.
+    """
 
     ### \todo Should probably include 'modifier' here as well.
     if self.method != None and self.arguments != None:
@@ -69,13 +75,15 @@ class StackFrame(object):
 
 
 
-  def __str__(self):
+  def __str__(self): # String
     return self.fileLocation() + ": " + self.fullMethod()
 
 
 
-  def __eq__(self, other):
-    """Test if two StackFrames represents the same method. Instruction address is not included in the comparison."""
+  def __eq__(self, other): # Boolean
+    """Test if two StackFrames represents the same method. Instruction address
+    is not included in the comparison.
+    """
 
     ### \todo Should perhaps look at address if 'library' is the only not-None member.
     if type(other) is type(self):
@@ -90,8 +98,7 @@ class StackFrame(object):
 
 
 
-  def __ne__(self, other):
+  def __ne__(self, other): # Boolean
     return not self.__eq__(other)
-
 
 
