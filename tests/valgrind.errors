@@ -1,0 +1,367 @@
+==7420== Memcheck, a memory error detector
+==7420== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==7420== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==7420== Command: ./errorProducingApplication.exe
+==7420== 
+==7420== Invalid write of size 8
+==7420==    at 0x400A5F: setArray(double*) (errorProducingApplication.cpp:54)
+==7420==    by 0x400C7C: main (errorProducingApplication.cpp:89)
+==7420==  Address 0x5a1d038 is 8 bytes before a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Invalid write of size 8
+==7420==    at 0x400A5F: setArray(double*) (errorProducingApplication.cpp:54)
+==7420==    by 0x400C8F: main (errorProducingApplication.cpp:90)
+==7420==  Address 0x5a1d0c8 is 8 bytes before a block of size 80 alloc'd
+==7420==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A3B: createMallocArray() (errorProducingApplication.cpp:47)
+==7420==    by 0x400C5A: main (errorProducingApplication.cpp:86)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518A7A7: __printf_fp (printf_fp.c:400)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518A8CF: __printf_fp (printf_fp.c:415)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x5175032: __mpn_extract_double (dbl2mpn.c:56)
+==7420==    by 0x518AE51: __printf_fp (printf_fp.c:431)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x5175037: __mpn_extract_double (dbl2mpn.c:60)
+==7420==    by 0x518AE51: __printf_fp (printf_fp.c:431)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518BA0D: __printf_fp (printf_fp.c:964)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B418: __printf_fp (printf_fp.c:975)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B445: __printf_fp (printf_fp.c:978)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B450: __printf_fp (printf_fp.c:978)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B47F: __printf_fp (printf_fp.c:988)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B48E: __printf_fp (printf_fp.c:988)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B87C: __printf_fp (rounding-mode.h:52)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B4F2: __printf_fp (printf_fp.c:1094)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B5E4: __printf_fp (printf_fp.c:1163)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Conditional jump or move depends on uninitialised value(s)
+==7420==    at 0x518B6C5: __printf_fp (printf_fp.c:1170)
+==7420==    by 0x5189A52: vfprintf (vfprintf.c:1660)
+==7420==    by 0x51AE3C8: vsnprintf (vsnprintf.c:119)
+==7420==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7420==    by 0x400C22: printArray(double*) (errorProducingApplication.cpp:78)
+==7420==    by 0x400C9E: main (errorProducingApplication.cpp:92)
+==7420==  Uninitialised value was created by a heap allocation
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+==7420== Mismatched free() / delete / delete []
+==7420==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400ACF: axpy(double*, double*) (errorProducingApplication.cpp:68)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420==  Address 0x5a1d160 is 0 bytes inside a block of size 8 alloc'd
+==7420==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400AAD: axpy(double*, double*) (errorProducingApplication.cpp:66)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B2E: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420==  Address 0x5a1d160 is 0 bytes inside a block of size 8 free'd
+==7420==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400ACF: axpy(double*, double*) (errorProducingApplication.cpp:68)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B0F: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B26: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Invalid write of size 8
+==7420==    at 0x400B55: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CC6: main (errorProducingApplication.cpp:95)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Mismatched free() / delete / delete []
+==7420==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400ACF: axpy(double*, double*) (errorProducingApplication.cpp:68)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d1b0 is 0 bytes inside a block of size 8 alloc'd
+==7420==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400AAD: axpy(double*, double*) (errorProducingApplication.cpp:66)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B2E: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d1b0 is 0 bytes inside a block of size 8 free'd
+==7420==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400ACF: axpy(double*, double*) (errorProducingApplication.cpp:68)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B0F: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B26: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== Invalid read of size 8
+==7420==    at 0x400B45: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d120 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A3B: createMallocArray() (errorProducingApplication.cpp:47)
+==7420==    by 0x400C5A: main (errorProducingApplication.cpp:86)
+==7420== 
+==7420== Invalid write of size 8
+==7420==    at 0x400B55: axpy(double*, double*) (errorProducingApplication.cpp:71)
+==7420==    by 0x400CDF: main (errorProducingApplication.cpp:96)
+==7420==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== 
+==7420== HEAP SUMMARY:
+==7420==     in use at exit: 160 bytes in 2 blocks
+==7420==   total heap usage: 4 allocs, 2 frees, 176 bytes allocated
+==7420== 
+==7420== 80 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==7420==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A0B: createNewArray() (errorProducingApplication.cpp:42)
+==7420==    by 0x400C55: main (errorProducingApplication.cpp:85)
+==7420== 
+==7420== 80 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==7420==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7420==    by 0x400A3B: createMallocArray() (errorProducingApplication.cpp:47)
+==7420==    by 0x400C5A: main (errorProducingApplication.cpp:86)
+==7420== 
+==7420== LEAK SUMMARY:
+==7420==    definitely lost: 160 bytes in 2 blocks
+==7420==    indirectly lost: 0 bytes in 0 blocks
+==7420==      possibly lost: 0 bytes in 0 blocks
+==7420==    still reachable: 0 bytes in 0 blocks
+==7420==         suppressed: 0 bytes in 0 blocks
+==7420== 
+==7420== For counts of detected and suppressed errors, rerun with: -v
+==7420== ERROR SUMMARY: 487 errors from 29 contexts (suppressed: 0 from 0)
