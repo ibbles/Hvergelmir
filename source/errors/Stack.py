@@ -108,6 +108,13 @@ class StackFrame(object):
 class Stack(object):
   """An ordered list of stack frames."""
 
+
+  # Towards main.
+  FROM_TOP = 1 # The top of the stack is the stack frame where the errored happened.
+
+  # Starting at main.
+  FROM_BOTTOM = 2 # The bottom of the stack is unually the stack frame for main.
+
   
   ## Stacks are bulit incrementally as frames are read from the file. The
   ## stack object is therefore initialized empty.
@@ -133,3 +140,17 @@ class Stack(object):
     """
 
     self.frames.append(stackFrame)
+
+
+
+  def getFrame(self, index, direction):
+    if index >= len(self.frames):
+      return None
+    if direction == FROM_TOP:
+      return self.stack[index]
+    elif direction == FROM_BOTTOM:
+      return self.stack[-(index+1)]
+    else:
+      raise ValueError("Stack.getFrame received an unknown direction argument.")
+
+      
