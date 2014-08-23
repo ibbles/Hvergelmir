@@ -1,3 +1,11 @@
+"""
+Tests for the regular expression patterns found in LineMatching.py.
+
+Part of Hvergelmir, a tree based Valgrind output viewer - https://github.com/ibbles/Hvergelmir
+See LICENSE for licensing information.
+"""
+
+
 
 import sys
 sys.path.append("../../source")

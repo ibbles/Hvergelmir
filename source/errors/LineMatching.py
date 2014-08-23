@@ -1,3 +1,12 @@
+"""
+Collection of utilities used for matching in, classifying of and data
+extraction from text lines.
+
+Part of Hvergelmir, a tree based Valgrind output viewer - https://github.com/ibbles/Hvergelmir
+See LICENSE for licensing information.
+"""
+
+
 import re
 
 class Patterns(object):
