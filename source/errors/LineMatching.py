@@ -89,6 +89,8 @@ class Patterns(object):
       self.isInvalidFreeDelete.match(line) != None or \
       self.isMemoryLoss.match(line) != None
 
+
+
   def isSourceStart(self, line):
     """Returns true if the given line matches a known error source."""
 
