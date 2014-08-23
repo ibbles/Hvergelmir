@@ -1,5 +1,7 @@
 """
-Classes representing a call stack.
+
+Classes representing a call stack. It holds data extracted from one line of a
+call stack printed by Valgrind.
 
 Part of Hvergelmir, a tree based Valgrind output viewer - https://github.com/ibbles/Hvergelmir
 See LICENSE for licensing information.
