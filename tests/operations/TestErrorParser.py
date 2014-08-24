@@ -31,7 +31,7 @@ assert unknowns != None, "Got None unknowns list from parser."
 
 
 
-if len(sys.argv) > 1 and sys.argv[1] == "--verbose":
+if "--verbose" in sys.argv:
   print("Got " + str(len(errors)) + " errors and " + str(len(unknowns)) + " unknowns.")
   
   print("Errors:")
@@ -48,6 +48,6 @@ assert (len(unknowns)) == 19, "Did not get the expected number of unknowns."
 
 
 
-
-for error in errors:
-  print(error.valgrindString(id))
+if "--printLog" in sys.argv:
+  for error in errors:
+    print(error.valgrindString(id))
