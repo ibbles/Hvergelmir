@@ -22,12 +22,19 @@ except:
   sys.exit("Could not read file '" + logFileName + "'.")
 
 
-expectedTotal = 367
-expectedValgrind = 347 
-expectedHeader = 4
+## These numbers have been found by running the test and recording the number
+## of matches found. The tester therefore passed at that time by definition.
+## The numbers may be wrong, It this test fails then we need to manually, or
+## by using some external tool, count the actual number of expected matches
+## for each pattern. When doing this, mark the numbers that has been verified.
+## When all lines has been verified then this comment and the marks can be
+## removed.
+expectedTotal = 367 # Verified.
+expectedValgrind = 347 # Verified.
+expectedHeader = 4 # Verified
 expectStackTop = 56
-expectStackCaller = 145
-expectAnyStack = 201
+expectStackCaller = 187
+expectAnyStack = 243
 expectDependUnitialized = 14
 expectInvalidRead = 7
 expectInvalidWrite = 4
@@ -87,29 +94,30 @@ for line in lines:
   if patterns.isSourceStart(line):
     numSource += 1
 
-print(str(len(lines)) + " lines in total.")
-print(str(numValgrind) + " lines are valgrind lines.")
-print(str(numHeader) + " lines are header lines.")
-print(str(numStackTop) + " lines are stack tops.")
-print(str(numStackCaller) + " lines are stack callers.")
-print(str(numAnyStack) + " lines are any stack frame.")
-print(str(numDependUninitialized) + " lines are jump or move using uninitialized.")
-print(str(numInvalidRead) + " lines are invalid reads.")
-print(str(numInvalidWrite) + " lines are invalid writes.")
-print(str(numMissmatchFreeDelete) + " lines are missmatched free/delte.")
-print(str(numInvalidFreeDelete) + " lines are invalid free/delete.")
-print(str(numMemoryLoss) + " lines are memory loss.")
-print(str(numStackAllocation) + " lines are stack allocation source lines.")
-print(str(numHeapAllocation) + " lines are heap allocation source lines.")
-print(str(numError) + " lines are error start.")
-print(str(numSource) + " lines are source.")
+if len(sys.argv) > 1 and sys.argv[1] == "--verbose":
+  print(str(len(lines)) + " lines in total.")
+  print(str(numValgrind) + " lines are valgrind lines.")
+  print(str(numHeader) + " lines are header lines.")
+  print(str(numStackTop) + " lines are stack tops.")
+  print(str(numStackCaller) + " lines are stack callers.")
+  print(str(numAnyStack) + " lines are any stack frame.")
+  print(str(numDependUninitialized) + " lines are jump or move using uninitialized.")
+  print(str(numInvalidRead) + " lines are invalid reads.")
+  print(str(numInvalidWrite) + " lines are invalid writes.")
+  print(str(numMissmatchFreeDelete) + " lines are missmatched free/delte.")
+  print(str(numInvalidFreeDelete) + " lines are invalid free/delete.")
+  print(str(numMemoryLoss) + " lines are memory loss.")
+  print(str(numStackAllocation) + " lines are stack allocation source lines.")
+  print(str(numHeapAllocation) + " lines are heap allocation source lines.")
+  print(str(numError) + " lines are error start.")
+  print(str(numSource) + " lines are source.")
 
 assert len(lines) == expectedTotal, "Did not get the expected number of lines from the test log file. Has the log been changed?"
 assert numValgrind == expectedValgrind, "Did not find the expected number of Valgrind lines."
 assert numHeader == expectedHeader, "Did not find the expected number of header lines."
 assert numStackTop == expectStackTop, "Did not find the expected number of stack tops."
-assert numStackCaller == expectStackCaller, "Did not find the expected number of stack callers."
-assert numAnyStack == expectAnyStack, "Did not find the expected number of stack frames."
+assert numStackCaller == expectStackCaller, "Did not find the expected number of stack callers. Expected " + str(expectStackCaller) + " but found " + str(numStackCaller) +"."
+assert numAnyStack == expectAnyStack, "Did not find the expected number of stack frames. Expected " + str(expectAnyStack) + " but found " + str(numAnyStack) +"."
 assert numAnyStack == numStackTop + numStackCaller, "Stack tops and stack callers does not add up sum of stack frames."
 assert numDependUninitialized == expectDependUnitialized, "Did not find the expected number of uninitialized jump."
 assert numInvalidRead == expectInvalidRead, "Did not find the expected number of invalid reads."
