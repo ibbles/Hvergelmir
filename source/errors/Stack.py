@@ -146,10 +146,10 @@ class Stack(object):
   def getFrame(self, index, direction):
     if index >= len(self.frames):
       return None
-    if direction == FROM_TOP:
-      return self.stack[index]
-    elif direction == FROM_BOTTOM:
-      return self.stack[-(index+1)]
+    if direction == Stack.FROM_TOP:
+      return self.frames[index]
+    elif direction == Stack.FROM_BOTTOM:
+      return self.frames[-(index+1)]
     else:
       raise ValueError("Stack.getFrame received an unknown direction argument.")
 
