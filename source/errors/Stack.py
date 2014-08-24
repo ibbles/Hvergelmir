@@ -80,6 +80,28 @@ class StackFrame(object):
 
 
 
+  def valgrindString(self):
+    valgrindString = ""
+    valgrindString += self.address + ": "
+    valgrindString += self.method
+    valgrindString += self.arguments
+    if self.modifier != None and len(self.modifier) > 0:
+      valgrindString += " "
+      valgrindString += self.modifier
+    valgrindString += " ("
+    if self.fileName != None and self.lineNumber != None:
+      valgrindString += self.fileName
+      valgrindString += ":"
+      valgrindString += self.lineNumber
+    else:
+      valgrindString += "in "
+      valgrindString += self.library
+    valgrindString += ")"
+
+    return valgrindString
+
+
+
   def __eq__(self, other): # Boolean
     """Test if two StackFrames represents the same method. Instruction address
     is not included in the comparison.
@@ -120,7 +142,7 @@ class Stack(object):
   ## stack object is therefore initialized empty.
   def __init__(self):
 
-    ## Frames are stored top-to-bottom, so  frames[0] is the method that caused
+    ## Frames are stored top-to-bottom, so frames[0] is the method that caused
     ## the error and frames[-1] is usually the stack frame for main.
     self.frames = [] # StackFrame[]
 
@@ -152,5 +174,23 @@ class Stack(object):
       return self.frames[-(index+1)]
     else:
       raise ValueError("Stack.getFrame received an unknown direction argument.")
+
+
+  def getTop(self):
+    if len(self.frames) == 0:
+      return None
+    else:
+      return self.frames[0]
+
+  def getBottom(self):
+    if len(self.frames) == 0:
+      return None
+    else:
+      return self.frames[-1]
+
+
+
+  def getCallers(self):
+    return self.frames[1:]
 
       
