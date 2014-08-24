@@ -76,13 +76,13 @@ class ParsedError(object):
     error type and the stack frame at the top of the stack.
     """
 
-    return self.type + " @ " + str(self.errorStack.getFrame(0, Stack.FROM_TOP))
+    return self.errorType + " @ " + str(self.errorStack.getFrame(0, Stack.FROM_TOP))
 
 
 
   def info(self): # String
     """Return a longer string representation of this error."""
-    info  = "Type: " + self.type + "\n\n"
+    info  = "Type: " + self.errorType + "\n\n"
     info += "Location: " + "\n"
 
     for frame in self.errorStack.frames:
