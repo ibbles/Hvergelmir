@@ -39,7 +39,7 @@ class Patterns(object):
     ## is a listing of the pieces available. Named regular expression groups are
     ## used to allow for information inspection and extraction.
     address = "(?P<address>0x[a-fA-F0-9]+): " ## The address in memory of the instruction that gaused the error.
-    method = "(?P<method>[\w:+~? \[\]<>().]+) ?" ## The name of the method containing the instruction.
+    method = "(?P<method>[\w:+~&? \[\]<>.,]+) ?" ## The name of the method containing the instruction.
     arguments = "(?P<arguments>(?:\([\w ,:*<>()&]*\))?) " ## Argument list for the method.
     modifier = "(?P<modifier>[\w]*)? ?" ## Any modifier, such as 'const', on the method.
     fileAndLine = "(?P<fileName>[\w /.+-]+.\w+):(?P<lineNumber>\d+)" ## Source code location of the error.
@@ -56,7 +56,6 @@ class Patterns(object):
     self.isStackFrameCaller = re.compile(".*by " + stackFrameShared)
     self.isAnyStackFrame = re.compile(".*(?:(?:at)|(?:by)) " + stackFrameShared)
 
-
     ## Listing of Valgrind errors. This list may be incomplete. Errors not
     ## listed here will be ignored and hidden from the user.
     self.isConditionalJumpOrMoveDependsOnUninitialisedValues = re.compile(".*Conditional jump or move depends on uninitialised value\(s\)$")
@@ -65,7 +64,6 @@ class Patterns(object):
     self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) \/ delete \/ delete \[\]")
     self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) \/ delete \/ delete\[\] \/ realloc\(\)")
     self.isMemoryLoss = re.compile(".*\d+ bytes in \d+ blocks are possibly lost in loss record \d+ of \d+")
-
 
     ## Listing of Valgrind sources. A source is a separate call stack to some
     ## memory operation (allocate or deallocate) that has some relation to the
