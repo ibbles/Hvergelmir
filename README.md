@@ -26,6 +26,7 @@ purpose is to give a bit of overview of where the errors are occurring.
   * File editing in the code viewer.
   * Running Valgrind from within the application.
   * Embeddable GUI widgets for third-party IDEs.
+  * Process selection. Use the ==ID== markers in the Valgrind log to select only the lines belonging to a given ID.
 * 1.0.0 Public release.
 
 
