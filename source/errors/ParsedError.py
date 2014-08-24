@@ -97,22 +97,27 @@ class ParsedError(object):
     return info
 
 
-  def valgrindString(self): # String
+  def valgrindString(self, id): # String
     """Create a string that is as close as poosible to what a Valgrind log for
     this error would look like.
     """
 
+    if id != None:
+      prefix = "==" + id + "=="
+    else:
+      prefix = ""
+
     log = ""
-    log += " " + self.errorType + "\n"
-    log += "    at " + self.errorStack.getTop().valgrindString() + "\n"
+    log += prefix + " " + self.errorType + "\n"
+    log += prefix + "    at " + self.errorStack.getTop().valgrindString() + "\n"
     for caller in self.errorStack.getCallers():
-      log += "    by " + caller.valgrindString() + "\n"
+      log += prefix + "    by " + caller.valgrindString() + "\n"
     if self.sourceType != None:
-      log += "  " + self.sourceType + "\n"
-      log += "    at " + self.sourceStack.getTop().valgrindString() + "\n"
+      log += prefix + "  " + self.sourceType + "\n"
+      log += prefix + "    at " + self.sourceStack.getTop().valgrindString() + "\n"
       for caller in self.sourceStack.getCallers():
-        log += "    by " + caller.valgrindString() + "\n"
-    log += " "
+        log += prefix + "    by " + caller.valgrindString() + "\n"
+    log += prefix + " "
 
     return log
 
