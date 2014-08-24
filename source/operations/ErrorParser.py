@@ -4,11 +4,13 @@ See LICENSE for licensing information.
 """
 
 from errors.LineMatching import Patterns
+from errors.ParsedError import ParsedError
 
 class ErrorParser(object):
   """Converts a list of strings, the Valgrind log, to a list of ParsedErrors."""
 
   def __init__(self):
+    self.patterns = Patterns()
     self.resetState()
 
 
@@ -40,28 +42,24 @@ class ErrorParser(object):
     dormant state, waiting for the next call to parse().
     """
 
-    if self.patterns == None:
-      self.patterns = Patterns()
-    self.errors = None # ParsedError list.
-    self.unknownErrors = None # String list. Lines that the parser didn't recognize.
-    self.lines = None # String list. Provided by user.
-    self.line = None # String. One of the string in 'lines'. Is always either None or a Valgrind line.
-    self.currentLine = None # Integer. The index of 'line' in 'lines'.
+    self.lines = None
+    self.line = None
+    self.currentLine = None
 
 
 
   def setupState(self, lines): # Boolean
     """Prepare the parser for parsing from the given string list."""
 
-    if line == None or len(lines) == 0:
+    if lines == None or len(lines) == 0:
       return False
 
-    self.errors = []
-    self.unknownErrors = []
+    self.errors = [] # ParsedError list.
+    self.unknownErrors = [] # String list. Lines that the parser didn't recognize.
 
-    self.lines = lines
-    self.currentLine = 0
-    self.line = self.lines[self.currentLine]
+    self.lines = lines # String list. Provided by user.
+    self.currentLine = 0 # Integer. The index of 'line' in 'lines'.
+    self.line = self.lines[self.currentLine] # String. One of the string in 'lines'. Is always either None or a Valgrind line.
     return self.ensureOnValgrindLine()
 
 
@@ -75,7 +73,7 @@ class ErrorParser(object):
 
 
 
-  def parseImplementation():
+  def parseImplementation(self):
     """Main parsing loop. Iteratively reads errors from the lines list and adds
     them to the errors list.
     @precondition self.line is a Valgrind line.
@@ -113,7 +111,8 @@ class ErrorParser(object):
     @precondition self.line is a Valgrind line.
     """
     while not self.patterns.isErrorStart(self.line):
-      self.unknownErrors.append(self.line)
+      if len(self.line) > 0:
+        self.unknownErrors.append(self.line)
       hadAnotherLine = self.nextValgrindLine()
       if not hadAnotherLine:
         return None
@@ -131,8 +130,40 @@ class ErrorParser(object):
     return error
 
 
+
   def readStacks(self, error):
-    pass
+    # There can be up to two call stacks; a mandatory one for the error and an
+    # optional one for the source.
+
+    if self.patterns.isStackFrameTop.match(self.line) == None:
+      return False
+
+    error.setLocation(self.line)
+
+    while self.nextValgrindLine() and self.patterns.isStackFrameCaller.match(self.line):
+      error.addCaller(self.line)
+
+    if not self.isParsing():
+      return True # It is OK to run out of lines while reading callers.
+
+    if not self.patterns.isSourceStart(self.line):
+      return True # This error didn't have a source locaiton.
+
+    error.setSourceType(self.line)
+
+    hadAnotherLine = self.nextValgrindLine()
+    if not hadAnotherLine:
+      return True # This is not really a valid error, but it's close enough to be usable.
+
+    if not self.patterns.isStackFrameTop.match(self.line):
+      return True # # This is not really a valid error, but it's close enough to be usable.
+
+    error.setSourceLocation(self.line)
+
+    while self.nextValgrindLine() and self.patterns.isStackFrameCaller.match(self.line):
+      error.addSourceCaller(self.line)
+
+    return True
 
 
 
@@ -180,7 +211,7 @@ class ErrorParser(object):
     reached.
     """
 
-    hadAnotherLine = self.nextLine():
+    hadAnotherLine = self.nextLine()
     if not hadAnotherLine:
       return False
 
@@ -190,4 +221,5 @@ class ErrorParser(object):
         return false;
 
     self.stripValgrindPrefix()
+    return True
 
