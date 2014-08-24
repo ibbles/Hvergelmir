@@ -24,7 +24,7 @@ if lines == None or len(lines) == 0:
   sys.exit("Did not get any lines from '" + valgrindLogFileName + "'.")
 
 parser = ErrorParser()
-errors, unknowns = parser.parse(lines)
+errors, unknowns, id = parser.parse(lines)
 
 assert errors != None, "Get None error list from parser."
 assert unknowns != None, "Got None unknowns list from parser."
@@ -46,3 +46,8 @@ if len(sys.argv) > 1 and sys.argv[1] == "--verbose":
 assert len(errors) == 27, "Did not get the expected number of errors."
 assert (len(unknowns)) == 19, "Did not get the expected number of unknowns."
 
+
+
+
+for error in errors:
+  print(error.valgrindString(id))
