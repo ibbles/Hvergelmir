@@ -30,10 +30,11 @@ class ErrorParser(object):
 
     self.parseImplementation()
 
+    id = self.id
     errorList = self.errors
     unknownErrors = self.unknownErrors
     self.resetState()
-    return  (errorList, unknownErrors)
+    return  (errorList, unknownErrors, id)
 
 
 
@@ -57,10 +58,11 @@ class ErrorParser(object):
     self.errors = [] # ParsedError list.
     self.unknownErrors = [] # String list. Lines that the parser didn't recognize.
 
+    self.id = None
     self.lines = lines # String list. Provided by user.
     self.currentLine = 0 # Integer. The index of 'line' in 'lines'.
     self.line = self.lines[self.currentLine] # String. One of the string in 'lines'. Is always either None or a Valgrind line.
-    return self.ensureOnValgrindLine()
+    return self.initFirstLine()
 
 
 
@@ -167,12 +169,18 @@ class ErrorParser(object):
 
 
 
-  def ensureOnValgrindLine(self): # Boolean
-    if self.isValgrindLine():
-      self.stripValgrindPrefix()
-      return True
-    else:
-      return self.nextValgrindLine()
+  def initFirstLine(self): # Boolean
+    while not self.isValgrindLine():
+      hadAnotherLine = self.nextLine()
+      if not hadAnotherLine:
+        return false
+
+    idMatch = self.patterns.readId.match(self.line)
+    self.id = idMatch.group(1)
+
+    self.stripValgrindPrefix()
+    return True
+    
 
 
 
