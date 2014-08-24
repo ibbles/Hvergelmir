@@ -17,6 +17,7 @@ class Patterns(object):
     ## All lines printed by Valgrind begin with the ==<number>== marker.
     self.isValgrind = re.compile("^==\d+== .*$")
     self.stripValgrind = re.compile("^==\d+== (.*)")
+    self.readId = re.compile("^==(\d+)== .*$")
 
     ## The following is a list of lines Valgrind prints that can safely be ignored.
     self.isHeader = re.compile(
