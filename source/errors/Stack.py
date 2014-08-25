@@ -21,13 +21,13 @@ class StackFrame(object):
     \param line - String
     """
 
-    address = None # String
-    method = None # String
-    arguments = None # String
-    modifier = None # String
-    fileName = None # String
-    lineNumber = None # Integer
-    library = None # String
+    self.address = None # String
+    self.method = None # String
+    self.arguments = None # String
+    self.modifier = None # String
+    self.fileName = None # String
+    self.lineNumber = None # Integer
+    self.library = None # String
 
 
     match = patterns.isAnyStackFrame.match(line)
