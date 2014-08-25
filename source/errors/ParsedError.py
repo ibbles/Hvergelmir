@@ -58,7 +58,7 @@ class ParsedError(object):
 
     selfFrame = self.getStackFrame(index, direction)
     otherFrame = other.getStackFrame(index, direction)
-    if myFrame == None or otherFrame == None:
+    if selfFrame == None or otherFrame == None:
       return False
     else:
       return selfFrame == otherFrame
