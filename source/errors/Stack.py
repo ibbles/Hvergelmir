@@ -164,6 +164,10 @@ class Stack(object):
     self.frames.append(stackFrame)
 
 
+  def getNumFrames(self): # integer
+    return len(self.frames)
+
+    
 
   def getFrame(self, index, direction):
     if index >= len(self.frames):
@@ -181,6 +185,7 @@ class Stack(object):
       return None
     else:
       return self.frames[0]
+
 
   def getBottom(self):
     if len(self.frames) == 0:
