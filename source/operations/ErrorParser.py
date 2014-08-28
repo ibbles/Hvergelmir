@@ -15,18 +15,19 @@ class ErrorParser(object):
 
 
 
-  def parse(self, lines): # (ParsedError list, string list)
+  def parse(self, lines): # (ParsedError list, string list, process id)
     """Parser ParsedErrors from the given line list. All elements of 'lines'
     must be string-like. None elements are not allowed.
     @param lines - String list - The contents of a Valgrind log.
-    @return (ParsedError list, string list) tuple containing the errors found
-            and a list of unknown valgrind lines, or None if there was an error
-            before any errors could be read.
+    @return (ParsedError list, string list, process id) tuple containing the
+            errors found and a list of unknown valgrind lines, or None if there
+            was an error before any errors could be read. Process id is the PID
+            extracted from the Valgrind log file.
     """
 
     setupSuccessful = self.setupState(lines)
     if not setupSuccessful:
-      return None
+      return (None, None, None)
 
     self.parseImplementation()
 
