@@ -78,7 +78,7 @@ class SharedStackError(object):
     self.children.append(child)
 
 
-  def getLocation(self):
+  def getLocation(self): # StackFrame
     if self.stackFramesShared > 0:
       return self.errors[0].getStackFrame(self.stackFramesShared-1, self.direction)
     else:
