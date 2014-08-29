@@ -47,7 +47,7 @@ class Hvergelmir(object):
     ## Basic application setup.
     self.app = wx.PySimpleApp()
     self.app.frame = wx.Frame(None, title="Hvergelmir")
-    self.app.frame.SetSize(wx.Size(1600, 1200))
+    self.app.frame.SetSize(wx.Size(1200, 900))
     self.frameSizer = wx.BoxSizer(wx.VERTICAL)
     self.frameContents = wx.SplitterWindow(self.app.frame)
 
