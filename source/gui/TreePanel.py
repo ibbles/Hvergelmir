@@ -13,6 +13,7 @@ class TreePanel(wx.Panel):
     wx.Panel.__init__(self, parent=parent)
 
     self.tree = wx.TreeCtrl(self)
+    self.callback = None
 
     self.treeRoot = self.tree.AddRoot("Errors")
     self.appendToTree(self.treeRoot, error, 0)
@@ -40,3 +41,23 @@ class TreePanel(wx.Panel):
       self.appendToTree(newNode, child, depth+1)
 
 
+
+  def itemSelectedCallback(self, event):
+    print("GUI level callback.")
+    if self.callback == None:
+      print("No dispatch, ignoring.")
+      return
+    treeItem = event.GetItem()
+    treeItemData = self.tree.GetItemPyData(treeItem)
+    if treeItemData == None:
+      print("Data is None, ignoring.")
+      return
+    self.callback(treeItemData)
+
+
+  def setItemSelectedCallback(self, callback):
+    frame = wx.GetTopLevelParent(self)
+    frame.Bind(wx.EVT_TREE_SEL_CHANGED, self.itemSelectedCallback, self.tree)
+    self.callback = callback
+
+    
