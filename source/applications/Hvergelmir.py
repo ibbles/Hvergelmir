@@ -54,6 +54,11 @@ class Hvergelmir(object):
     ## Parse Valgrind log file.
     parser = ErrorParser()
     errors, unknowns, id = parser.parse(lines)
+    if errors == None:
+      print("Could not read any errors.")
+      sys.exit(1)
+
+
     self.errorTree = SharedStackError(errors, 0, Stack.FROM_BOTTOM)
 
     if unknowns != None:
