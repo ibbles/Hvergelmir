@@ -174,7 +174,7 @@ class ErrorParser(object):
     while not self.isValgrindLine():
       hadAnotherLine = self.nextLine()
       if not hadAnotherLine:
-        return false
+        return False
 
     idMatch = self.patterns.readId.match(self.line)
     self.id = idMatch.group(1)
