@@ -73,10 +73,15 @@ class Hvergelmir(object):
 
 
 if __name__ == "__main__":
-  filePath = "-"
-  if len(sys.argv) == 2:
-    filePath = sys.argv[1]
+  if len(sys.argv) != 2:
+    print("Usage: " + sys.argv[0] + " <valgrind log> ")
+    print("or")
+    print("       " + "valgrind <valgrind options> <application> <application options> | " + sys.argv[0] + " -")
+    sys.exit(1)
+
+  filePath = sys.argv[1]
+
   lines = readFileFromPath(filePath)
   if lines == None:
-    os.exit(1)
+    sys.exit(1)
   Hvergelmir(lines)
