@@ -9,6 +9,7 @@ sys.path.append(os.getcwd())
 
 
 from gui.TreePanel import TreePanel
+from gui.SourceCodePanel import SourceCodePanel
 
 from operations.ErrorParser import ErrorParser
 from errors.SharedStackError import SharedStackError
@@ -67,9 +68,9 @@ class Hvergelmir(object):
         print("  " + unknown)
 
     ## Create GUI.
-    self.treePanelLeft = TreePanel(self.frameContents, self.errorTree)
-    self.treePanelRight = TreePanel(self.frameContents, self.errorTree)
-    self.frameContents.SplitVertically(self.treePanelLeft, self.treePanelRight)
+    self.treePanel = TreePanel(self.frameContents, self.errorTree)
+    self.sourceCode = SourceCodePanel(self.frameContents, "Select an error from the list.")
+    self.frameContents.SplitVertically(self.treePanel, self.sourceCode)
     self.frameSizer.Add(self.frameContents, 1, flag=wx.EXPAND)
     self.app.frame.SetSizer(self.frameSizer)
     self.app.frame.Center()
