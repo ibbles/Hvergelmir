@@ -12,15 +12,17 @@ from gui.TreePanel import TreePanel
 from gui.SourceCodePanel import SourceCodePanel
 
 from operations.ErrorParser import ErrorParser
+from errors.ParsedError import ParsedError
 from errors.SharedStackError import SharedStackError
 from errors.Stack import Stack
+from errors.Stack import StackFrame
 
 import wx
 
 
 
 
-def readFileFromPath(filePath):
+def readFileFromPath(filePath): # string list.
   try:
     if filePath == "-":
       return readFile(sys.stdin, filePath)
@@ -32,7 +34,7 @@ def readFileFromPath(filePath):
     return None
 
 
-def readFile(file, filePath):
+def readFile(file, filePath): # string list.
   lines = file.read().splitlines()
   if lines == None or len(lines) == 0:
     print "File '" + filePath + "' is empty."
@@ -75,7 +77,34 @@ class Hvergelmir(object):
     self.app.frame.SetSizer(self.frameSizer)
     self.app.frame.Center()
     self.app.frame.Show()
+
+    ## Define GUI callbacks.
+    self.treePanel.setItemSelectedCallback(self.treeItemSelected)
+
     self.app.MainLoop()
+
+
+  def treeItemSelected(self, data):
+    print("Got tree data.")
+    if isinstance(data, StackFrame):
+      stackFrame = data
+    elif isinstance(data, ParsedError):
+      stackFrame = data.getStackFrame(0, Stack.FROM_TOP)
+    else:
+      print("Is not a know type.")
+      return
+
+    filePath = stackFrame.fileName
+    if filePath == None:
+      print("The stack frame doesn't have a file name")
+      return
+    print("Reading source from '" + filePath + "'.")
+    lines = readFileFromPath(filePath)
+    if lines == None:
+      print("Could not read source code from '" + filePath + "'.")
+      return
+    print("Got " + str(len(lines)) + " lines of source code.")
+
 
 
 if __name__ == "__main__":
