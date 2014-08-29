@@ -78,10 +78,11 @@ class Hvergelmir(object):
 
 
 if __name__ == "__main__":
+  executableName = "Hvergelmir" ## How can I figure out the real name? It may be a bash script calling Python.
   if len(sys.argv) != 2:
-    print("Usage: " + sys.argv[0] + " <valgrind log> ")
+    print("Usage: " + executableName + " <valgrind log> ")
     print("or")
-    print("       " + "valgrind <valgrind options> <application> <application options> | " + sys.argv[0] + " -")
+    print("       " + "valgrind <valgrind options> <application> <application options> | " + executableName + " -")
     sys.exit(1)
 
   filePath = sys.argv[1]
