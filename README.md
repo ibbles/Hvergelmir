@@ -55,8 +55,11 @@ Developed using python version 2.7.6.
 
 The following import statements for external libraryes are used.
 
+* os
 * re
 * sys
+* wx
+* wx.stc
 
 ## Issues ##
 
