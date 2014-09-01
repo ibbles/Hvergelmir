@@ -55,7 +55,9 @@ Developed using python version 2.7.6.
 
 The following import statements for external libraryes are used.
 
+* argparse
 * os
+* os.path
 * re
 * sys
 * wx
