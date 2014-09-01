@@ -74,7 +74,7 @@ class FileReader(object):
     """Search the prefixes for a readable file."""
 
     for prefix in self.prefixes:
-      prefixedPath = prefix + os.sep + path;
+      prefixedPath = os.path.join(prefix, path)
       if self.isReadable(prefixedPath):
         return prefixedPath
     return None
