@@ -5,7 +5,6 @@ See LICENSE for licensing information.
 
 import os
 import sys
-sys.path.append(os.getcwd())
 
 
 from gui.TreePanel import TreePanel
