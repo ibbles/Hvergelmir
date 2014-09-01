@@ -11,7 +11,10 @@ sys.path.append(os.getcwd())
 from gui.TreePanel import TreePanel
 from gui.SourceCodePanel import SourceCodePanel
 
+from disk.FileReader import FileReader
+
 from operations.ErrorParser import ErrorParser
+
 from errors.ParsedError import ParsedError
 from errors.SharedStackError import SharedStackError
 from errors.Stack import Stack
@@ -20,27 +23,7 @@ from errors.Stack import StackFrame
 import wx
 
 
-
-
-def readFileFromPath(filePath): # string list.
-  try:
-    if filePath == "-":
-      return readFile(sys.stdin, filePath)
-    else:
-      with open(filePath, "r") as file:
-        return readFile(file, filePath)
-  except IOError:
-    print "Could not read file '" + filePath + "'."
-    return None
-
-
-def readFile(file, filePath): # string list.
-  lines = file.read().splitlines()
-  if lines == None or len(lines) == 0:
-    print "File '" + filePath + "' is empty."
-    return None
-  return lines
-
+fileReader = FileReader()
 
 
 
@@ -99,7 +82,7 @@ class Hvergelmir(object):
       print("The stack frame doesn't have a file name")
       return
     print("Reading source from '" + filePath + "'.")
-    lines = readFileFromPath(filePath)
+    lines = fileReader.readFile(filePath)
     if lines == None:
       print("Could not read source code from '" + filePath + "'.")
       return
@@ -117,7 +100,10 @@ if __name__ == "__main__":
 
   filePath = sys.argv[1]
 
-  lines = readFileFromPath(filePath)
+  if filePath == "-":
+    lines = fileReader.readFile(sys.stdin)
+  else:
+    lines = fileReader.readFile(filePath)
   if lines == None:
     sys.exit(1)
   Hvergelmir(lines)
