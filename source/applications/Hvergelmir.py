@@ -20,6 +20,7 @@ from errors.SharedStackError import SharedStackError
 from errors.Stack import Stack
 from errors.Stack import StackFrame
 
+import argparse
 import wx
 
 
@@ -91,19 +92,34 @@ class Hvergelmir(object):
 
 
 if __name__ == "__main__":
-  executableName = "Hvergelmir" ## How can I figure out the real name? It may be a bash script calling Python.
-  if len(sys.argv) != 2:
-    print("Usage: " + executableName + " <valgrind log> ")
-    print("or")
-    print("       " + "valgrind <valgrind options> <application> <application options> | " + executableName + " -")
-    sys.exit(1)
+  
+  ## Configure the command line options we support.
+  parser = argparse.ArgumentParser()
+  parser.add_argument("log", help="The Valgrind log file. Pass '-' to read from standard in.")
+  parser.add_argument("-p", "--path", default=[], action="append", help="Directories to search for source code.")
+  args = parser.parse_args()
 
-  filePath = sys.argv[1]
+  ## Read command line options.
+  filePath = args.log
+  for path in args.path:
+    fileReader.addPrefix(path)
 
+
+  ## Determine if we should read the Valgrind log from a file or standard in.
   if filePath == "-":
     lines = fileReader.readFile(sys.stdin)
   else:
     lines = fileReader.readFile(filePath)
+    ## If we are reading from a file and the user didn't specify the --path option,
+    ## then guess that source file paths are relative to the folder where the log is.
+    if len(args.path) == 0:
+      logDir = os.path.dirname(os.path.abspath(filePath))
+      fileReader.addPrefix(logDir)
+
+  ## Bail if we don't have any lines. The reader will have printed some error
+  ## message already.
   if lines == None:
     sys.exit(1)
+
+  ## Setup done. Launch log parsing and the GUI.
   Hvergelmir(lines)
