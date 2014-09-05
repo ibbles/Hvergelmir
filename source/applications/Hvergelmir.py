@@ -9,6 +9,7 @@ import sys
 
 from gui.TreePanel import TreePanel
 from gui.SourceCodePanel import SourceCodePanel
+from gui.ErrorPanel import ErrorPanel
 
 from disk.FileReader import FileReader
 
@@ -54,8 +55,8 @@ class Hvergelmir(object):
 
     ## Create GUI.
     self.treePanel = TreePanel(self.frameContents, self.errorTree)
-    self.sourceCode = SourceCodePanel(self.frameContents, "Select an error from the list.")
-    self.frameContents.SplitVertically(self.treePanel, self.sourceCode)
+    self.errorPanel = ErrorPanel(self.frameContents)
+    self.frameContents.SplitVertically(self.treePanel, self.errorPanel)
     self.frameSizer.Add(self.frameContents, 1, flag=wx.EXPAND)
     self.app.frame.SetSizer(self.frameSizer)
     self.app.frame.Center()
@@ -68,10 +69,12 @@ class Hvergelmir(object):
 
 
   def treeItemSelected(self, data):
+    self.errorPanel.errorInfo.clear()
     if isinstance(data, StackFrame):
       stackFrame = data
     elif isinstance(data, ParsedError):
       stackFrame = data.getStackFrame(0, Stack.FROM_TOP)
+      self.errorPanel.errorInfo.display(data)
     else:
       return
 
@@ -82,7 +85,7 @@ class Hvergelmir(object):
     if lines == None:
       print("Could not read source code from '" + filePath + "'.")
       return
-    self.sourceCode.setSouceCode(lines, int(stackFrame.lineNumber))
+    self.errorPanel.sourceCode.setSouceCode(lines, int(stackFrame.lineNumber))
 
 
 
