@@ -23,6 +23,8 @@ class SourceCodePanel(wx.Panel):
     wx.Panel.__init__(self, parent=parent)
 
     self.sourceCode = wx.stc.StyledTextCtrl(self, style=wx.TE_MULTILINE)
+    self.sourceCode.SetMarginType(0, wx.stc.STC_MARGIN_NUMBER)
+    self.sourceCode.SetMarginWidth(0, 30)
 
     if initialText != None:
       self.sourceCode.AddText(initialText)
@@ -52,6 +54,8 @@ class SourceCodePanel(wx.Panel):
     self.sourceCode.AddText(''.join(map(appendNewline, lines)))
     if highlightedLine != None and len(lines) > highlightedLine:
       self.highlightLine(lines, highlightedLine)
+    self.sourceCode.SetMarginType(0, wx.stc.STC_MARGIN_NUMBER)
+    self.sourceCode.SetMarginWidth(0, 30)
     self.sourceCode.SetReadOnly(True)
 
 
@@ -75,4 +79,5 @@ class SourceCodePanel(wx.Panel):
 
     scrollIndex = max(index-10, 0)
     self.sourceCode.ScrollToLine(scrollIndex)
+
 
