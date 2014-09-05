@@ -34,8 +34,13 @@ class SourceCodePanel(wx.Panel):
     self.SetSizer(sizer)
 
 
+  def clear(self):
+    self.sourceCode.SetReadOnly(False)
+    self.sourceCode.ClearAll()
+    self.sourceCode.SetReadOnly(True)
 
-  def setSouceCode(self, lines, highlightedLine): # None
+
+  def setSourceCode(self, lines, highlightedLine): # None
     """Display 'lines'. If 'highlightedLine' is given then that line will be
     highlighted and brought into view. Line number indices are 1-based to match
     Valgrinds line numbering style.

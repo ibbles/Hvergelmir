@@ -70,6 +70,9 @@ class Hvergelmir(object):
 
   def treeItemSelected(self, data):
     self.errorPanel.errorInfo.clear()
+    self.errorPanel.sourceCode.clear();
+    self.errorPanel.sourceCode.setSourceCode(["Select an error from the list."], None)
+
     if isinstance(data, StackFrame):
       stackFrame = data
     elif isinstance(data, ParsedError):
@@ -85,7 +88,7 @@ class Hvergelmir(object):
     if lines == None:
       print("Could not read source code from '" + filePath + "'.")
       return
-    self.errorPanel.sourceCode.setSouceCode(lines, int(stackFrame.lineNumber))
+    self.errorPanel.sourceCode.setSourceCode(lines, int(stackFrame.lineNumber))
 
 
 
