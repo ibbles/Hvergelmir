@@ -32,7 +32,12 @@ class TreePanel(wx.Panel):
 
     stackFrame = errorTreeNode.getLocation()
     title = "["+str(len(errorTreeNode.errors))+"]" + stackFrame.method + ":" + (stackFrame.lineNumber and stackFrame.lineNumber or stackFrame.address or "")
-    newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(stackFrame))
+    
+    if len(errorTreeNode.errors) == 1:
+      newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(errorTreeNode.errors[0]))
+    else:
+      newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(stackFrame))
+
     for error in errorTreeNode.errors:
       if error.errorStack.getNumFrames() == depth:
         self.tree.AppendItem(newNode, error.errorType, 1, 1, wx.TreeItemData(error))
