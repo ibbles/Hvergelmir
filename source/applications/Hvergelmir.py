@@ -74,7 +74,7 @@ class Hvergelmir(object):
     elif isinstance(data, ParsedError):
       stackFrame = data.getStackFrame(0, Stack.FROM_TOP)
     else:
-      print("Is not a know type.")
+      print("Is not a known type.")
       return
 
     filePath = stackFrame.fileName
@@ -87,6 +87,7 @@ class Hvergelmir(object):
       print("Could not read source code from '" + filePath + "'.")
       return
     print("Got " + str(len(lines)) + " lines of source code.")
+    self.sourceCode.setSouceCode(lines, int(stackFrame.lineNumber))
 
 
 
@@ -122,3 +123,4 @@ if __name__ == "__main__":
 
   ## Setup done. Launch log parsing and the GUI.
   Hvergelmir(lines)
+
