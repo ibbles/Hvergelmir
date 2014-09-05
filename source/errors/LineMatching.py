@@ -64,7 +64,8 @@ class Patterns(object):
     self.isInvalidWrite = re.compile(".*Invalid write of size \d+$")
     self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) \/ delete \/ delete \[\]")
     self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) \/ delete \/ delete\[\] \/ realloc\(\)")
-    self.isMemoryLoss = re.compile(".*\d+ bytes in \d+ blocks are possibly lost in loss record \d+ of \d+")
+    self.isMemoryLoss = re.compile(".*\d+ bytes in \d+ blocks are (?:(?:possibly)|(?:definitely)) lost in loss record \d+ of \d+")
+
 
     ## Listing of Valgrind sources. A source is a separate call stack to some
     ## memory operation (allocate or deallocate) that has some relation to the
