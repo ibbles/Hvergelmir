@@ -68,25 +68,20 @@ class Hvergelmir(object):
 
 
   def treeItemSelected(self, data):
-    print("Got tree data.")
     if isinstance(data, StackFrame):
       stackFrame = data
     elif isinstance(data, ParsedError):
       stackFrame = data.getStackFrame(0, Stack.FROM_TOP)
     else:
-      print("Is not a known type.")
       return
 
     filePath = stackFrame.fileName
     if filePath == None:
-      print("The stack frame doesn't have a file name")
       return
-    print("Reading source from '" + filePath + "'.")
     lines = fileReader.readFile(filePath)
     if lines == None:
       print("Could not read source code from '" + filePath + "'.")
       return
-    print("Got " + str(len(lines)) + " lines of source code.")
     self.sourceCode.setSouceCode(lines, int(stackFrame.lineNumber))
 
 

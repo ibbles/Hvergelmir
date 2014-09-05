@@ -43,14 +43,11 @@ class TreePanel(wx.Panel):
 
 
   def itemSelectedCallback(self, event):
-    print("GUI level callback.")
     if self.callback == None:
-      print("No dispatch, ignoring.")
       return
     treeItem = event.GetItem()
     treeItemData = self.tree.GetItemPyData(treeItem)
     if treeItemData == None:
-      print("Data is None, ignoring.")
       return
     self.callback(treeItemData)
 
