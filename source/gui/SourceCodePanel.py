@@ -35,17 +35,12 @@ class SourceCodePanel(wx.Panel):
 
 
 
-
-
-
-
   def setSouceCode(self, lines, highlightedLine): # None
     """Display 'lines'. If 'highlightedLine' is given then that line will be
-    highlighted and brought into view.
+    highlighted and brought into view. Line number indices are 1-based to match
+    Valgrinds line numbering style.
     @param lines - string list - Content to be displayed.
-    @param highlightedLine - integer - Line number to highlight"""
-
-  
+    @param highlightedLine - integer - Line number to highlight. Pass 1 to highlight the first line."""
 
     self.sourceCode.SetReadOnly(False)
     self.sourceCode.ClearAll()
@@ -57,11 +52,22 @@ class SourceCodePanel(wx.Panel):
 
 
   def highlightLine(self, lines, highlightedLine): # None
-    firstChar = 0
-    for i in range(0, highlightedLine-1):
-      firstChar += len(lines[i])+1
-    lastChar = firstChar + len(lines[highlightedLine-1])
+    ## Compensate for 1-based line number indexing.
+    index = highlightedLine-1
 
-    self.sourceCode.ScrollToLine(highlightedLine-1 - 10)
+    ## StyledTextCtrl doesn't have a line highligther, so we need to find the
+    ## character indices of the wanted line.
+    firstChar = 0
+
+    ## Count the number of charactrs in the lines preceeding the wanted one.
+    for i in range(0, index):
+      firstChar += len(lines[i])+1
+
+    ## Move forward past the wanted line to find the last character.
+    lastChar = firstChar + len(lines[index])
+
     self.sourceCode.SetSelection(firstChar, lastChar)
+
+    scrollIndex = max(index-10, 0)
+    self.sourceCode.ScrollToLine(scrollIndex)
 
