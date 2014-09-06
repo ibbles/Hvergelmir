@@ -33,7 +33,7 @@ Hvergelmir> ./Hvergelmir "valgrind.log"
 or
 
 ```
-Hvergelmir> valgrind <valgrind options> <application> <application options> | ./Hvergelmir "-"
+Hvergelmir> valgrind <valgrind options> <application> <application options> 2>&1 | ./Hvergelmir "-"
 ```
 
 The Valgrind log may contain source code locations for the reported
