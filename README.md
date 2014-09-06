@@ -14,6 +14,34 @@ errors in the leaves and ignore branches that currently aren't of interest. Its
 purpose is to give a bit of overview of where the errors are occurring.
 
 
+## Usage ##
+
+For those with access to bash, the main application is started using the
+Hvergelmir script in the root directory. It can also be started manually by
+adding the full path to the /source directory to the PYTHONPATH environment
+variable and then running 'python ./applications/Hvergelmir.py'.
+
+Hvergelmir needs a Valgrind log to read error messages from and it is passed as
+a command line arguments. The log can be either a file on disk, or read from
+standard in. In the latter case, pass '-' as the command line argument.
+
+```
+Hvergelmir> valgrind <valgrind options> <application> <application options> 2>"valgrind.log"
+Hvergelmir> ./Hvergelmir "valgrind.log"
+```
+
+or
+
+```
+Hvergelmir> valgrind <valgrind options> <application> <application options> | ./Hvergelmir "-"
+```
+
+The Valgrind log may contain source code locations for the reported
+errors. Hvergelmir will display read and display the source files if it can find
+them. Directories where Hvergelmir will search for the source files is specified
+using the "-p" or "--path" command line arguments.
+
+
 ## Timeline ##
 
 * 0.1.0 Read a Valgrind log and print a list of errors to standard out.
@@ -29,11 +57,6 @@ purpose is to give a bit of overview of where the errors are occurring.
   * Process selection. Use the ==ID== markers in the Valgrind log to select only the lines belonging to a given ID.
 * 1.0.0 Public release.
 
-
-## Current status ##
-
-Building data structures and helper classes required to read and manipulate the
-Valgrind errors. The goal is the 0.1.0 release.
 
 
 ## File organization ##
