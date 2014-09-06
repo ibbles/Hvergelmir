@@ -6,6 +6,18 @@ See LICENSE for licensing information.
 
 import wx
 
+class TreeItemData(object):
+  def __init__(self, stackFrame, nearestSourceStackFrame, parsedError):
+    """Information stored at each node of the error tree. Holds the current stack
+    frame, the closest stack frame with source code information, and the error, if
+    a single error passed through this node in the tree.
+    """
+    self.stackFrame = stackFrame
+    self.nearestSourceStackFrame = nearestSourceStackFrame ## May be same as stackFrame.
+    self.parsedError = parsedError ## May be None.
+
+
+
 class TreePanel(wx.Panel):
   """A GUI widget that displays a call graph tree."""
 
@@ -31,16 +43,21 @@ class TreePanel(wx.Panel):
     """
 
     stackFrame = errorTreeNode.getLocation()
-    title = "["+str(len(errorTreeNode.errors))+"]" + stackFrame.method + ":" + (stackFrame.lineNumber and stackFrame.lineNumber or stackFrame.address or "")
-    
+    nearestSourceStackFrame = errorTreeNode.getNearestSourceLocation()
     if len(errorTreeNode.errors) == 1:
-      newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(errorTreeNode.errors[0]))
+      error = errorTreeNode.errors[0]
     else:
-      newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(stackFrame))
+      error = None
+      
+    treeItemData = TreeItemData(stackFrame, nearestSourceStackFrame, error)
+    title = "["+str(len(errorTreeNode.errors))+"]" + stackFrame.method + ":" + (stackFrame.lineNumber and stackFrame.lineNumber or stackFrame.address or "")
+
+    newNode = self.tree.AppendItem(guiTreeNode, title, 1, 1, wx.TreeItemData(treeItemData))
 
     for error in errorTreeNode.errors:
       if error.errorStack.getNumFrames() == depth:
-        self.tree.AppendItem(newNode, error.errorType, 1, 1, wx.TreeItemData(error))
+        errorTreeItemData = TreeItemData(stackFrame, nearestSourceStackFrame, error)
+        self.tree.AppendItem(newNode, error.errorType, 1, 1, wx.TreeItemData(errorTreeItemData))
 
     for child in errorTreeNode.children:
       self.appendToTree(newNode, child, depth+1)

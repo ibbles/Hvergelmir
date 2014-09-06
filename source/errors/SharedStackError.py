@@ -67,6 +67,7 @@ class SharedStackError(object):
   def shouldConsumeNow(self, error, pivot, stackFramesShared, direction):
     return error.hasSameStackFrameAs(pivot, stackFramesShared, direction)
 
+
   def stillConsumable(self, error, pivot, stackFramesShared, direction):
     wasJustConsumed = self.shouldConsumeNow(error, pivot, stackFramesShared, direction)
     isOutOfStack = error.getStackFrame(stackFramesShared, direction) == None
@@ -76,6 +77,7 @@ class SharedStackError(object):
 
   def addChild(self, child):
     self.children.append(child)
+
 
 
   def getLocation(self): # StackFrame
@@ -88,6 +90,20 @@ class SharedStackError(object):
       else:
         leafLocation.method = "<Stack top>"
       return leafLocation;
+
+
+
+  def getNearestSourceLocation(self): # StackFrame
+    if self.stackFramesShared > 0:
+      index = self.stackFramesShared-1
+      frame = self.errors[0].getStackFrame(index, self.direction)
+      while frame != None and frame.fileName == None:
+        index -= 1
+        frame = self.errors[0].getStackFrame(index, self.direction)
+
+      return frame
+    else:
+      return self.getLocation()
 
 
   def printTree(self, depth = 0):

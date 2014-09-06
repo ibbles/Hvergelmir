@@ -73,22 +73,26 @@ class Hvergelmir(object):
     self.errorPanel.sourceCode.clear();
     self.errorPanel.sourceCode.setSourceCode(["Select an error from the list."], None)
 
-    if isinstance(data, StackFrame):
-      stackFrame = data
-    elif isinstance(data, ParsedError):
-      stackFrame = data.getStackFrame(0, Stack.FROM_TOP)
-      self.errorPanel.errorInfo.display(data)
-    else:
-      return
+    stackFrame = data.stackFrame
+    nearestSourceStackFrame = data.nearestSourceStackFrame
+    error = data.parsedError ## ParsedError instance, or None.
 
-    filePath = stackFrame.fileName
+    if error != None:
+      self.errorPanel.errorInfo.display(error)
+
+    filePath = nearestSourceStackFrame.fileName
     if filePath == None:
       return
     lines = fileReader.readFile(filePath)
     if lines == None:
       print("Could not read source code from '" + filePath + "'.")
+      self.errorPanel.sourceCode.setSourceCode([
+        "Could not read source code from '"+filePath+"'.",
+        "Use the --path command line argument to add additional search directories."],
+        None)
       return
-    self.errorPanel.sourceCode.setSourceCode(lines, int(stackFrame.lineNumber))
+
+    self.errorPanel.sourceCode.setSourceCode(lines, int(nearestSourceStackFrame.lineNumber))
 
 
 
