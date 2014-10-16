@@ -40,11 +40,12 @@ class Patterns(object):
     ## is a listing of the pieces available. Named regular expression groups are
     ## used to allow for information inspection and extraction.
     address = "(?P<address>0x[a-fA-F0-9]+): " ## The address in memory of the instruction that gaused the error.
-    method = "(?P<method>[\w:+~&? \[\]<>.,]+) ?" ## The name of the method containing the instruction.
+    anonNamespace = "\(anonymous namespace\)"
+    method = "(?P<method>(" + anonNamespace + ")?[\w:=+*~&? \[\]<>.,]+) ?" ## The name of the method containing the instruction.
     arguments = "(?P<arguments>(?:\([\w ,:*<>()&]*\))?) " ## Argument list for the method.
     modifier = "(?P<modifier>[\w]*)? ?" ## Any modifier, such as 'const', on the method.
     fileAndLine = "(?P<fileName>[\w /.+-]+.\w+):(?P<lineNumber>\d+)" ## Source code location of the error.
-    library = "in (?P<library>[\w/.+-]+)" ## Compiled unit (e.g. .so file) that contains the offending instruction.
+    library = "in (?P<library>[\w/.+-_]+)" ## Compiled unit (e.g. .so file) that contains the offending instruction.
 
     ## Valgrind seems to always print either the source file with line number
     ## or the file name of the compiled binary.
@@ -64,7 +65,7 @@ class Patterns(object):
     self.isInvalidWrite = re.compile(".*Invalid write of size \d+$")
     self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) \/ delete \/ delete \[\]")
     self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) \/ delete \/ delete\[\] \/ realloc\(\)")
-    self.isMemoryLoss = re.compile(".*\d+ bytes in \d+ blocks are (?:(?:possibly)|(?:definitely)) lost in loss record \d+ of \d+")
+    self.isMemoryLoss = re.compile(".*[\d,.]+ (?:\([\d,.]+ direct, [\d,.]+ indirect\))? ?bytes in [\d,.]+ blocks are (?:(?:possibly)|(?:definitely)) lost in loss record [\d,.]+ of [\d,.]+")
 
 
     ## Listing of Valgrind sources. A source is a separate call stack to some
