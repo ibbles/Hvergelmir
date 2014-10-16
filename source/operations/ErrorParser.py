@@ -113,6 +113,10 @@ class ErrorParser(object):
     an error is found. Skipped lines are added to unknownErrors.
     @precondition self.line is a Valgrind line.
     """
+
+    if not self.isParsing():
+      return None
+
     while not self.patterns.isErrorStart(self.line):
       if len(self.line) > 0:
         self.unknownErrors.append(self.line)
