@@ -1,3 +1,9 @@
+# PyCharm project files
+.idea
+
+# Ninja IDE project files
+hvergelmir.nja
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
