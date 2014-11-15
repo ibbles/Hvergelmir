@@ -45,8 +45,11 @@ class Patterns(object):
 
         anonNamespace = "\(anonymous namespace\)"
 
+        unknownMethod = "\(\?\)+?"
+        properMethod = "(?P<method>(" + anonNamespace + ")?[\w:=+*~&? \[\]<>.,]+) ?"
+
         # The name of the method containing the instruction.
-        method = "(?P<method>(" + anonNamespace + ")?[\w:=+*~&? \[\]<>.,]+) ?"
+        method = "(?:(?:" + unknownMethod + ")|(?:" + properMethod + "))"
 
         # Argument list for the method.
         arguments = "(?P<arguments>(?:\([\w ,:*<>()&]*\))?) "
@@ -66,7 +69,7 @@ class Patterns(object):
 
         ## The above components are combined into patterns for 'at' frames, 'by'
         ## frames or either.
-        stackFrameShared = address + method + arguments + modifier + "\(" + fileLib + "\)"
+        stackFrameShared = address + method + "(?:" + arguments + modifier + "\(" + fileLib + "\)" + ")?"
         self.isStackFrameTop = re.compile(".*at " + stackFrameShared)
         self.isStackFrameCaller = re.compile(".*by " + stackFrameShared)
         self.isAnyStackFrame = re.compile(".*(?:(?:at)|(?:by)) " + stackFrameShared)
