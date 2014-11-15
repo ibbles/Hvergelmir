@@ -21,14 +21,15 @@ class TreeItemData(object):
 class TreePanel(wx.Panel):
   """A GUI widget that displays a call graph tree."""
 
-  def __init__(self, parent, error):
+  def __init__(self, parent, errorFromBottom, errorFromTop):
     wx.Panel.__init__(self, parent=parent)
 
     self.tree = wx.TreeCtrl(self)
     self.callback = None
 
     self.treeRoot = self.tree.AddRoot("Errors")
-    self.appendToTree(self.treeRoot, error, 0)
+    self.appendToTree(self.treeRoot, errorFromBottom, 0)
+    self.appendToTree(self.treeRoot, errorFromTop, 0)
 
     sizer = wx.BoxSizer(wx.VERTICAL)
     sizer.Add(self.tree, 1, flag=wx.EXPAND)
@@ -48,7 +49,7 @@ class TreePanel(wx.Panel):
       error = errorTreeNode.errors[0]
     else:
       error = None
-      
+
     treeItemData = TreeItemData(stackFrame, nearestSourceStackFrame, error)
     title = "["+str(len(errorTreeNode.errors))+"]" + stackFrame.method + ":" + (stackFrame.lineNumber and stackFrame.lineNumber or stackFrame.address or "")
 
@@ -79,4 +80,3 @@ class TreePanel(wx.Panel):
     frame.Bind(wx.EVT_TREE_SEL_CHANGED, self.itemSelectedCallback, self.tree)
     self.callback = callback
 
-    

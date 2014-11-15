@@ -44,7 +44,8 @@ class Hvergelmir(object):
             print("Could not read any errors.")
             sys.exit(1)
 
-        self.errorTree = SharedStackError(errors, 0, Stack.FROM_BOTTOM)
+        self.errorTreeFromBottom = SharedStackError(errors, 0, Stack.FROM_BOTTOM)
+        self.errorTreeFromTop = SharedStackError(errors, 0, Stack.FROM_TOP)
 
         if unknowns is None:
             print("The parser didn't recognize the following error types:")
@@ -52,7 +53,7 @@ class Hvergelmir(object):
                 print("  " + unknown)
 
         ## Create GUI.
-        self.treePanel = TreePanel(self.frameContents, self.errorTree)
+        self.treePanel = TreePanel(self.frameContents, self.errorTreeFromBottom, self.errorTreeFromTop)
         self.errorPanel = ErrorPanel(self.frameContents)
         self.frameContents.SplitVertically(self.treePanel, self.errorPanel)
         self.frameSizer.Add(self.frameContents, 1, flag=wx.EXPAND)
