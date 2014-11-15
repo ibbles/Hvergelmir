@@ -67,9 +67,11 @@ class Patterns(object):
         ## or the file name of the compiled binary.
         fileLib = "(?:(?:" + fileAndLine + ")|(?:" + library + "))"
 
+        postMethod = "(?:" + arguments + modifier + ")?"
+
         ## The above components are combined into patterns for 'at' frames, 'by'
         ## frames or either.
-        stackFrameShared = address + method + "(?:" + arguments + modifier + "\(" + fileLib + "\)" + ")?"
+        stackFrameShared = address + method + "(?:" + postMethod + "\(" + fileLib + "\)" + ")?"
         self.isStackFrameTop = re.compile(".*at " + stackFrameShared)
         self.isStackFrameCaller = re.compile(".*by " + stackFrameShared)
         self.isAnyStackFrame = re.compile(".*(?:(?:at)|(?:by)) " + stackFrameShared)
@@ -80,8 +82,8 @@ class Patterns(object):
         self.isConditionalJumpOrMoveDependsOnUninitialisedValues = re.compile(conditionalJumpOrMove)
         self.isInvalidRead = re.compile(".*Invalid read of size \d+$")
         self.isInvalidWrite = re.compile(".*Invalid write of size \d+$")
-        self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) \/ delete \/ delete \[\]")
-        self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) \/ delete \/ delete\[\] \/ realloc\(\)")
+        self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) / delete / delete \[\]")
+        self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) / delete / delete\[\] / realloc\(\)")
 
         directIndirec = "(?:\([\d,.]+ direct, [\d,.]+ indirect\))? ?"
         bytesBlocks = "bytes in [\d,.]+ blocks are "
