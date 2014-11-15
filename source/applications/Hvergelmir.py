@@ -67,7 +67,12 @@ class Hvergelmir(object):
         self.app.MainLoop()
 
     def treeItemSelected(self, data):
-        """"""
+        """ Called by the TreePanel when an item is selected. The argument is the
+        data that was stored in the selected item. Usually a
+
+
+        :param data: TreeItemData
+        """
         self.errorPanel.errorInfo.clear()
         self.errorPanel.sourceCode.clear()
         self.errorPanel.sourceCode.setSourceCode(["Select an error from the list."], None)
@@ -93,6 +98,8 @@ class Hvergelmir(object):
             return
 
         self.errorPanel.sourceCode.setSourceCode(lines, int(nearestSourceStackFrame.lineNumber))
+
+
 
 if __name__ == "__main__":
     """"""
