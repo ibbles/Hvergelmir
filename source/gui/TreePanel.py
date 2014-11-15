@@ -66,11 +66,11 @@ class TreePanel(wx.Panel):
 
 
   def itemSelectedCallback(self, event):
-    if self.callback == None:
+    if self.callback is None:
       return
     treeItem = event.GetItem()
     treeItemData = self.tree.GetItemPyData(treeItem)
-    if treeItemData == None:
+    if treeItemData is None:
       return
     self.callback(treeItemData)
 
