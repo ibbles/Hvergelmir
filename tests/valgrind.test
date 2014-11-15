@@ -1,0 +1,347 @@
+==3800== Memcheck, a memory error detector
+==3800== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==3800== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==3800== Command: ./errorProducingApplication.exe
+==3800== 
+==3800== Invalid write of size 8
+==3800==    at 0x400A5F: setArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C7C: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d038 is 8 bytes before a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid write of size 8
+==3800==    at 0x400A5F: setArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C8F: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d0c8 is 8 bytes before a block of size 80 alloc'd
+==3800==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A3B: createMallocArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C5A: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518A3D7: __printf_fp (printf_fp.c:400)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518A4FF: __printf_fp (printf_fp.c:415)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x5174C62: __mpn_extract_double (dbl2mpn.c:56)
+==3800==    by 0x518AA81: __printf_fp (printf_fp.c:431)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x5174C67: __mpn_extract_double (dbl2mpn.c:60)
+==3800==    by 0x518AA81: __printf_fp (printf_fp.c:431)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B63D: __printf_fp (printf_fp.c:964)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B048: __printf_fp (printf_fp.c:975)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B075: __printf_fp (printf_fp.c:978)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B080: __printf_fp (printf_fp.c:978)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B0AF: __printf_fp (printf_fp.c:988)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B0BE: __printf_fp (printf_fp.c:988)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B4AC: __printf_fp (rounding-mode.h:52)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B122: __printf_fp (printf_fp.c:1094)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B214: __printf_fp (printf_fp.c:1163)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Conditional jump or move depends on uninitialised value(s)
+==3800==    at 0x518B2F5: __printf_fp (printf_fp.c:1170)
+==3800==    by 0x5189682: vfprintf (vfprintf.c:1660)
+==3800==    by 0x51ADFF8: vsnprintf (vsnprintf.c:119)
+==3800==    by 0x4EBAFAF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC1423: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4EC170F: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, double) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x4ECCCA4: std::ostream& std::ostream::_M_insert<double>(double) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==3800==    by 0x400C22: printArray(double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C9E: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Uninitialised value was created by a heap allocation
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Mismatched free() / delete / delete []
+==3800==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400ACF: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d160 is 0 bytes inside a block of size 8 alloc'd
+==3800==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400AAD: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B2E: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d160 is 0 bytes inside a block of size 8 free'd
+==3800==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400ACF: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B0F: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B26: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid write of size 8
+==3800==    at 0x400B55: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CC6: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Mismatched free() / delete / delete []
+==3800==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400ACF: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d1b0 is 0 bytes inside a block of size 8 alloc'd
+==3800==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400AAD: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B2E: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d1b0 is 0 bytes inside a block of size 8 free'd
+==3800==    at 0x4C2C83C: operator delete[](void*) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400ACF: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B0F: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B26: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid read of size 8
+==3800==    at 0x400B45: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d120 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A3B: createMallocArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C5A: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== Invalid write of size 8
+==3800==    at 0x400B55: axpy(double*, double*) (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400CDF: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==  Address 0x5a1d090 is 0 bytes after a block of size 80 alloc'd
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== 
+==3800== HEAP SUMMARY:
+==3800==     in use at exit: 160 bytes in 2 blocks
+==3800==   total heap usage: 4 allocs, 2 frees, 176 bytes allocated
+==3800== 
+==3800== 80 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==3800==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A0B: createNewArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C55: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== 80 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==3800==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3800==    by 0x400A3B: createMallocArray() (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800==    by 0x400C5A: main (in /home/ibbles/mirrored/programmering/mine/python/GitHub/Hvergelmir/master/Hvergelmir/tests/errorProducingApplication.exe)
+==3800== 
+==3800== LEAK SUMMARY:
+==3800==    definitely lost: 160 bytes in 2 blocks
+==3800==    indirectly lost: 0 bytes in 0 blocks
+==3800==      possibly lost: 0 bytes in 0 blocks
+==3800==    still reachable: 0 bytes in 0 blocks
+==3800==         suppressed: 0 bytes in 0 blocks
+==3800== 
+==3800== For counts of detected and suppressed errors, rerun with: -v
+==3800== ERROR SUMMARY: 487 errors from 29 contexts (suppressed: 0 from 0)
