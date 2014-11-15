@@ -137,7 +137,7 @@ class Stack(object):
   # Starting at main.
   FROM_BOTTOM = 2 # The bottom of the stack is unually the stack frame for main.
 
-  
+
   ## Stacks are bulit incrementally as frames are read from the file. The
   ## stack object is therefore initialized empty.
   def __init__(self):
@@ -167,7 +167,7 @@ class Stack(object):
   def getNumFrames(self): # integer
     return len(self.frames)
 
-    
+
 
   def getFrame(self, index, direction):
     if index >= len(self.frames):
@@ -198,4 +198,3 @@ class Stack(object):
   def getCallers(self):
     return self.frames[1:]
 
-      

@@ -28,7 +28,7 @@ class SourceCodePanel(wx.Panel):
 
     if initialText != None:
       self.sourceCode.AddText(initialText)
-      
+
     self.sourceCode.SetReadOnly(True)
 
     sizer = wx.BoxSizer(wx.VERTICAL)

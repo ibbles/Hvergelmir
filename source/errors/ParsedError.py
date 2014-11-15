@@ -24,7 +24,7 @@ class ParsedError(object):
     ## The Valgrind diagnostic line, i.e. , the first line printed for this error.
     ## Must match one of the patterns tested in Patterns.isErrorStart().
     self.errorType = type # String
-  
+
     ## A Stack object pointing out the location where the error happened.
     self.errorStack = Stack() # Stack
 
@@ -82,7 +82,7 @@ class ParsedError(object):
 
   def info(self): # String
     """Return a longer string representation of this error."""
-    
+
     info  = "Type: " + self.errorType + "\n\n"
     info += "Location: " + "\n"
 
@@ -155,4 +155,3 @@ class ParsedError(object):
     self.sourceStack.addCaller(StackFrame(location))
 
 
-    
