@@ -11,7 +11,7 @@ class FileReader(object):
   The directory list initially contains '.'.
   """
 
-  
+
   def __init__(self):
     self.prefixes = [] # string list.
     self.addPrefix(".")
@@ -71,16 +71,64 @@ class FileReader(object):
 
 
   def findFile(self, path): # string
-    """Search the prefixes for a readable file."""
+    """Search the prefixes for a readable file. The 'path' may contain prefixes.
+    For example, when give "textures/grass.png" 'findFile' may return
+    "./data/graphics/GPU/textures/grass.png" if "./data" has been added as an prefix.
+    :type path: str - The file to search for.
+    :rtype : str - Path to a readable file found below one of the prefixes.
+    """
 
     for prefix in self.prefixes:
-      prefixedPath = os.path.join(prefix, path)
-      if self.isReadable(prefixedPath):
-        return prefixedPath
+      foundPath = self.findFileInDirectory(prefix, path)
+      if foundPath is not None:
+          return foundPath
+
     return None
 
 
+  def findFileInDirectory(self, directory, path):
+      """Search recursively for a readable file at the given path relative to
+      the given directory.
+
+      For example, searching for 'path' "utility/config.h" in 'directory'
+      "/projects/my_project" may return "/projects/my_project/sources/include/helper/utility/config.h"
+                                         |-----directory-----|----recursive part----|-----path------|
+
+
+      @return string - The path to a readable file, or None of no such file exists.
+      :param directory: The path to the directory where the search should start.
+      :type directory: str
+      :param path: The tail of the path of the wanted file.
+      :type path: str
+      :return Path to a readable file.
+      :rtype : str
+      """
+      filePath = os.path.join(directory, path)
+      if self.isReadable(filePath):
+          return filePath
+      else:
+          subdirectories = self.getSubdirectories(directory)
+          for subdirectory in subdirectories:
+              foundPath = self.findFileInDirectory(subdirectory, path)
+              if foundPath is not None:
+                  return foundPath
+
 
   def isReadable(self, path): # boolean
+    """
+    Returns True if the given path points to a readable file.
+    :type path: str
+    :return: bool
+    """
     return os.path.isfile(path) and os.access(path, os.R_OK)
 
+
+  def getSubdirectories(self, path):
+      """ Returns a list of all immediate subdirectories within the directory at
+      the given path. The list will contain the joined path, i.e. 'path' will be
+      prepended before the found subdirectory name.
+
+      :param path: The path to the director from which subdirectories should be collected.
+      :return: A list of subdirectory paths found in the directory at the given path.
+      """
+      return [os.path.join(path, f) for f in os.listdir(path)  if os.path.isdir(os.path.join(path, f))]
