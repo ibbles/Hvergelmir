@@ -83,7 +83,7 @@ class ErrorParser(object):
     """
 
     self.readHeader()
-    
+
     error = self.readError()
     while error != None:
       self.errors.append(error)
@@ -185,7 +185,7 @@ class ErrorParser(object):
 
     self.stripValgrindPrefix()
     return True
-    
+
 
 
 
@@ -231,7 +231,7 @@ class ErrorParser(object):
     while not self.isValgrindLine():
       hadAnotherLine = self.nextLine()
       if not hadAnotherLine:
-        return false;
+        return False;
 
     self.stripValgrindPrefix()
     return True
