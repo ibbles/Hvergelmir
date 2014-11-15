@@ -55,8 +55,12 @@ class SharedStackError(object):
 
         while len(consumableErrors) > 0:
             pivot = consumableErrors[0]
-            errorsSharingStackWithPivot = [error for error in consumableErrors if self.shouldConsumeNow(error, pivot, self.stackFramesShared, self.direction)]
-            consumableErrors[:] =         [error for error in consumableErrors if self.stillConsumable( error, pivot, self.stackFramesShared, self.direction)]
+            errorsSharingStackWithPivot = [error for error in consumableErrors if
+                                            self.shouldConsumeNow(error, pivot, self.stackFramesShared, self.direction)
+                                          ]
+            consumableErrors[:] = [error for error in consumableErrors if
+                                      self.stillConsumable(error, pivot, self.stackFramesShared, self.direction)
+                                  ]
 
             if len(errorsSharingStackWithPivot) > 0:
                 self.addChild(SharedStackError(errorsSharingStackWithPivot, self.stackFramesShared + 1, self.direction))
@@ -102,11 +106,11 @@ class SharedStackError(object):
 
     def printTree(self, depth=0):
         """"""
-        print(" " * depth + str(self.getLocation()))
+        print((" " * depth + str(self.getLocation())))
 
         for error in self.errors:
             if len(error.errorStack.frames) == depth:
-                print(" " * (depth + 1) + str(error))
+                print((" " * (depth + 1) + str(error)))
 
         for child in self.children:
             child.printTree(depth + 1)
