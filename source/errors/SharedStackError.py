@@ -96,11 +96,14 @@ class SharedStackError(object):
         if self.stackFramesShared > 0:
             index = self.stackFramesShared - 1
             frame = self.errors[0].getStackFrame(index, self.direction)
-            while frame is not None and frame.fileName is None and index >= 0:
+            while frame is not None and frame.fileName is None and index > 0:
                 index -= 1
                 frame = self.errors[0].getStackFrame(index, self.direction)
 
-            return frame
+            if frame is not None and frame.fileName is not None:
+                return frame
+            else:
+                return self.getLocation()
         else:
             return self.getLocation()
 
