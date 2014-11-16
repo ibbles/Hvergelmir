@@ -39,7 +39,7 @@ class Hvergelmir(object):
 
         ## Parse Valgrind log file.
         parser = ErrorParser()
-        errors, unknowns, id = parser.parse(lines)
+        errors, unknowns, pid = parser.parse(lines)
         if errors is None:
             print("Could not read any errors.")
             sys.exit(1)
@@ -66,6 +66,8 @@ class Hvergelmir(object):
 
         self.app.MainLoop()
 
+
+
     def treeItemSelected(self, data):
         """ Called by the TreePanel when an item is selected. The argument is the
         data that was stored in the selected item. Usually a
@@ -83,16 +85,16 @@ class Hvergelmir(object):
         if error is not None:
             self.errorPanel.errorInfo.display(error)
 
-        filePath = nearestSourceStackFrame.fileName
-        if filePath is None:
+        sourceFilePath = nearestSourceStackFrame.fileName
+        if sourceFilePath is None:
             self.errorPanel.sourceCode.setSourceCode(
                 ["Unknow file location: " + str(nearestSourceStackFrame.fileName)], None)
             return
-        lines = fileReader.readFile(filePath)
+        lines = fileReader.readFile(sourceFilePath)
         if lines is None:
-            print("Could not read source code from '" + filePath + "'.")
+            print("Could not read source code from '" + sourceFilePath + "'.")
             self.errorPanel.sourceCode.setSourceCode([
-                "Could not read source code from '" + filePath + "'.",
+                "Could not read source code from '" + sourceFilePath + "'.",
                 "Use the --path command line argument to add additional search directories."],
                 None)
             return
@@ -105,10 +107,10 @@ if __name__ == "__main__":
     """"""
 
     ## Configure the command line options we support.
-    parser = argparse.ArgumentParser()
-    parser.add_argument("log", help="The Valgrind log file. Pass '-' to read from standard in.")
-    parser.add_argument("-p", "--path", default=[], action="append", help="Directories to search for source code.")
-    args = parser.parse_args()
+    argParser = argparse.ArgumentParser()
+    argParser.add_argument("log", help="The Valgrind log file. Pass '-' to read from standard in.")
+    argParser.add_argument("-p", "--path", default=[], action="append", help="Directories to search for source code.")
+    args = argParser.parse_args()
 
     ## Read command line options.
     filePath = args.log
@@ -117,9 +119,9 @@ if __name__ == "__main__":
 
     ## Determine if we should read the Valgrind log from a file or standard in.
     if filePath == "-":
-        lines = fileReader.readFile(sys.stdin)
+        fileLines = fileReader.readFile(sys.stdin)
     else:
-        lines = fileReader.readFile(filePath)
+        fileLines = fileReader.readFile(filePath)
         ## If we are reading from a file and the user didn't specify the --path option,
         ## then guess that source file paths are relative to the folder where the log is.
         if len(args.path) == 0:
@@ -128,8 +130,8 @@ if __name__ == "__main__":
 
     ## Bail if we don't have any lines. The reader will have printed some error
     ## message already.
-    if lines is None:
+    if fileLines is None:
         sys.exit(1)
 
     ## Setup done. Launch log parsing and the GUI.
-    Hvergelmir(lines)
+    Hvergelmir(fileLines)
