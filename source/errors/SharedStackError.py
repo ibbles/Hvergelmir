@@ -22,7 +22,7 @@ class SharedStackError(object):
         """Create a SharedStackError from the errors list. Will recursively create
         its own children, so the entire tree is created with this SharedStackError
         as the root.
-        @param error - ParsedError list
+        @param errors - ParsedError list
         @param stackFramesShared - Integer - The index of the stack frame that is known to be equal among all errors.
         @direction The side of the stack that is shared. Either Stack.FROM_TOP or Stack.FROM_BOTTOM.
         @precondition All stack frames with index < stackFramesShared are equal among all elements of 'errors'.
@@ -50,28 +50,30 @@ class SharedStackError(object):
 
     def createChildren(self):
         """"""
-        ## We will be picking a list appart, and don't want that list to be the instance variable.
+        ## We will be picking a list apart, and don't want that list to be the instance variable.
         consumableErrors = self.errors[:]
 
         while len(consumableErrors) > 0:
             pivot = consumableErrors[0]
             errorsSharingStackWithPivot = [error for error in consumableErrors if
-                                            self.shouldConsumeNow(error, pivot, self.stackFramesShared, self.direction)
+                                            SharedStackError.shouldConsumeNow(error, pivot, self.stackFramesShared, self.direction)
                                           ]
             consumableErrors[:] = [error for error in consumableErrors if
-                                      self.stillConsumable(error, pivot, self.stackFramesShared, self.direction)
+                                      SharedStackError.stillConsumable(error, pivot, self.stackFramesShared, self.direction)
                                   ]
 
             if len(errorsSharingStackWithPivot) > 0:
                 self.addChild(SharedStackError(errorsSharingStackWithPivot, self.stackFramesShared + 1, self.direction))
 
-    def shouldConsumeNow(self, error, pivot, stackFramesShared, direction):
+    @staticmethod
+    def shouldConsumeNow(error, pivot, stackFramesShared, direction):
         """"""
         return error.hasSameStackFrameAs(pivot, stackFramesShared, direction)
 
-    def stillConsumable(self, error, pivot, stackFramesShared, direction):
+    @staticmethod
+    def stillConsumable(error, pivot, stackFramesShared, direction):
         """"""
-        wasJustConsumed = self.shouldConsumeNow(error, pivot, stackFramesShared, direction)
+        wasJustConsumed = SharedStackError.shouldConsumeNow(error, pivot, stackFramesShared, direction)
         isOutOfStack = error.getStackFrame(stackFramesShared, direction) is None
         return not wasJustConsumed and not isOutOfStack
 
@@ -109,11 +111,11 @@ class SharedStackError(object):
 
     def printTree(self, depth=0):
         """"""
-        print((" " * depth + str(self.getLocation())))
+        print(" " * depth + str(self.getLocation()))
 
         for error in self.errors:
             if len(error.errorStack.frames) == depth:
-                print((" " * (depth + 1) + str(error)))
+                print(" " * (depth + 1) + str(error))
 
         for child in self.children:
             child.printTree(depth + 1)
