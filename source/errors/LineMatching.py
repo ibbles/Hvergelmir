@@ -87,8 +87,8 @@ class Patterns(object):
 
         directIndirec = "(?:\([\d,.]+ direct, [\d,.]+ indirect\))? ?"
         bytesBlocks = "bytes in [\d,.]+ blocks are "
-        certainty = "(?:(?:possibly)|(?:definitely)) "
-        record = "lost in loss record [\d,.]+ of [\d,.]+"
+        certainty = "(?:(?:possibly lost)|(?:definitely lost)|(?:still reachable)|(?:indirectly lost)) "
+        record = "in loss record [\d,.]+ of [\d,.]+"
         isMemoryLoss = ".*[\d,.]+ " + directIndirec + bytesBlocks + certainty + record
         self.isMemoryLoss = re.compile(isMemoryLoss)
 
