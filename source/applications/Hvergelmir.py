@@ -47,7 +47,7 @@ class Hvergelmir(object):
         self.errorTreeFromBottom = SharedStackError(errors, 0, Stack.FROM_BOTTOM)
         self.errorTreeFromTop = SharedStackError(errors, 0, Stack.FROM_TOP)
 
-        if unknowns is None:
+        if unknowns is not None:
             print("The parser didn't recognize the following error types:")
             for unknown in unknowns:
                 print("  " + unknown)
