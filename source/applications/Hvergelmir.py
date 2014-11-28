@@ -65,6 +65,8 @@ class Hvergelmir(object):
         ## Define GUI callbacks.
         self.treePanel.setItemSelectedCallback(self.treeItemSelected)
 
+        self.errorPanel.sourceCode.setSourceCode(["Select an error from the list."], None)
+
         self.app.MainLoop()
 
 
@@ -77,8 +79,6 @@ class Hvergelmir(object):
         :param data: TreeItemData
         """
         self.errorPanel.errorInfo.clear()
-        self.errorPanel.sourceCode.clear()
-        self.errorPanel.sourceCode.setSourceCode(["Select an error from the list."], None)
 
         nearestSourceStackFrame = data.nearestSourceStackFrame
         error = data.parsedError  # ParsedError instance, or None.
@@ -89,14 +89,14 @@ class Hvergelmir(object):
         sourceFilePath = nearestSourceStackFrame.fileName
         if sourceFilePath is None:
             errorMessage = "Unknown file location: " + str(nearestSourceStackFrame.fileName);
-            self.app.frame.SetStatusText(errorMessage)
+            self.setStatusText(errorMessage)
             self.errorPanel.sourceCode.setSourceCode([errorMessage], None)
             return
 
         lines = fileReader.readFile(sourceFilePath)
         if lines is None:
             errorMessage = "Could not read source code from '" + sourceFilePath + "'.";
-            self.app.frame.SetStatusText(errorMessage)
+            self.setStatusText(errorMessage)
             self.errorPanel.sourceCode.setSourceCode([
                 errorMessage,
                 "Use the --path command line argument to add additional search directories."],
@@ -104,9 +104,13 @@ class Hvergelmir(object):
             return
 
         self.errorPanel.sourceCode.setSourceCode(lines, int(nearestSourceStackFrame.lineNumber))
-        self.app.frame.SetStatusText(sourceFilePath)
+
+        self.setStatusText(sourceFilePath)
 
 
+    def setStatusText(self, text):
+        if self.app.frame.GetStatusBar().GetStatusText(0) != text:
+            self.app.frame.SetStatusText(text, 0)
 
 
 if __name__ == "__main__":
