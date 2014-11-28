@@ -34,6 +34,7 @@ class Hvergelmir(object):
         self.app = wx.PySimpleApp()
         self.app.frame = wx.Frame(None, title="Hvergelmir")
         self.app.frame.SetSize(wx.Size(1200, 900))
+        self.app.frame.CreateStatusBar(1)
         self.frameSizer = wx.BoxSizer(wx.VERTICAL)
         self.frameContents = wx.SplitterWindow(self.app.frame)
 
@@ -87,19 +88,24 @@ class Hvergelmir(object):
 
         sourceFilePath = nearestSourceStackFrame.fileName
         if sourceFilePath is None:
-            self.errorPanel.sourceCode.setSourceCode(
-                ["Unknow file location: " + str(nearestSourceStackFrame.fileName)], None)
+            errorMessage = "Unknown file location: " + str(nearestSourceStackFrame.fileName);
+            self.app.frame.SetStatusText(errorMessage)
+            self.errorPanel.sourceCode.setSourceCode([errorMessage], None)
             return
+
         lines = fileReader.readFile(sourceFilePath)
         if lines is None:
-            print("Could not read source code from '" + sourceFilePath + "'.")
+            errorMessage = "Could not read source code from '" + sourceFilePath + "'.";
+            self.app.frame.SetStatusText(errorMessage)
             self.errorPanel.sourceCode.setSourceCode([
-                "Could not read source code from '" + sourceFilePath + "'.",
+                errorMessage,
                 "Use the --path command line argument to add additional search directories."],
                 None)
             return
 
         self.errorPanel.sourceCode.setSourceCode(lines, int(nearestSourceStackFrame.lineNumber))
+        self.app.frame.SetStatusText(sourceFilePath)
+
 
 
 
