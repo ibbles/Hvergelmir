@@ -16,6 +16,10 @@ class FileReader(object):
         self.prefixes = [] # string list.
         self.addPrefix(".")
 
+        # The pathCache is a str->str dictionary that holds <file name> -> <path>
+        # mappings. If a file is searched but not found then the emptry string is
+        # stored in the <path>.
+        self.pathCache = {}
 
 
     def addPrefix(self, prefix): # None
@@ -46,15 +50,15 @@ class FileReader(object):
         @return string list with the file contents, or None if no matching readable file is found.
         """
 
-        path = self.findFile(path)
-        if path is None:
+        foundPath = self.findFile(path)
+        if foundPath is None:
             return None
 
         try:
-            with open(path, "r") as fileHandle:
+            with open(foundPath, "r") as fileHandle:
                 return FileReader.readFileFile(fileHandle)
         except IOError:
-            print "Could not read file '" + path + "'."
+            print "Could not read file '" + foundPath + "'."
             return None
 
 
@@ -82,11 +86,23 @@ class FileReader(object):
         :rtype : str - Path to a readable file found below one of the prefixes.
         """
 
+        cached = self.pathCache.get(path)
+        if cached is not None and cached != "":
+            return cached  # Have the path already. Just return it.
+        if cached is not None and cached == "":
+            return None  # We searched for this path previously but found nothing.
+
+        # Not in cache, do disk search.
+
         for prefix in self.prefixes:
             foundPath = self.findFileInDirectory(prefix, path)
             if foundPath is not None:
+                # Found the file. Add its path to the path cache.
+                self.pathCache[path] = foundPath
                 return foundPath
 
+        # No file with that name found. Insert empty string marker in the path cache.
+        self.pathCache[path] = ""
         return None
 
 
