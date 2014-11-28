@@ -50,8 +50,7 @@ class SourceCodePanel(wx.Panel):
     @param highlightedLine - integer - Line number to highlight. Pass 1 to highlight the first line."""
 
     self.sourceCode.SetReadOnly(False)
-    self.sourceCode.ClearAll()
-    self.sourceCode.AddText(''.join(map(appendNewline, lines)))
+    self.sourceCode.SetText(''.join(map(appendNewline, lines)))
     if highlightedLine != None and len(lines) > highlightedLine:
       self.highlightLine(lines, highlightedLine)
     self.sourceCode.SetMarginType(0, wx.stc.STC_MARGIN_NUMBER)
