@@ -14,7 +14,7 @@ class Patterns(object):
     """A collection of regular expressions that lines from the Valgrind log file can be matched against."""
 
     def __init__(self):
-        """"""
+        """ """
         ## All lines printed by Valgrind begin with the ==<number>== marker.
         self.isValgrind = re.compile("^==\d+== .*$")
         self.stripValgrind = re.compile("^==\d+== (.*)")
@@ -92,6 +92,12 @@ class Patterns(object):
         isMemoryLoss = ".*[\d,.]+ " + directIndirec + bytesBlocks + certainty + record
         self.isMemoryLoss = re.compile(isMemoryLoss)
 
+        useUninit = "Use of uninitialised value of size [\d.,]+"
+        self.isUseOfUninitialisedValue = re.compile(useUninit)
+
+        syscallParam = "Syscall param .* points to uninitialised byte\(s\)"
+        self.isSyscallParam = re.compile(syscallParam)
+
         ## Listing of Valgrind sources. A source is a separate call stack to some
         ## memory operation (allocate or deallocate) that has some relation to the
         ## detected error. Each such call stack in the Valgrind log has a header
@@ -102,7 +108,7 @@ class Patterns(object):
         self.isStackAllocation = re.compile(".*" + stackAllocation)
 
         address = "Address 0x[a-fA-F0-9]+ is "
-        block = " a block of size \d+ "
+        block = " a block of size [\d.,]+ "
         self.isHeapAllocation = re.compile(".*" + address + "\d+ bytes " + memoryLocation + block + memoryOperation)
 
     def isErrorStart(self, line):
@@ -113,7 +119,9 @@ class Patterns(object):
           self.isInvalidWrite.match(line) is not None or \
           self.isMissmatchedFreeDelete.match(line) is not None or \
           self.isInvalidFreeDelete.match(line) is not None or \
-          self.isMemoryLoss.match(line) is not None
+          self.isMemoryLoss.match(line) is not None or \
+          self.isUseOfUninitialisedValue.match(line) is not None or \
+          self.isSyscallParam.match(line) is not None
 
     def isSourceStart(self, line):
         """Returns true if the given line matches a known error source."""
