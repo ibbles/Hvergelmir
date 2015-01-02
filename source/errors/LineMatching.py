@@ -84,6 +84,8 @@ class Patterns(object):
         self.isInvalidWrite = re.compile(".*Invalid write of size \d+$")
         self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) / delete / delete \[\]")
         self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) / delete / delete\[\] / realloc\(\)")
+        self.isNotStackedMalloced = re.compile(".*Address 0x[0-9A-F]+ is not stack'd, malloc'd or \(recently\) free'd")
+        print("Not stacked/malloced")
 
         directIndirec = "(?:\([\d,.]+ direct, [\d,.]+ indirect\))? ?"
         bytesBlocks = "bytes in [\d,.]+ blocks are "
@@ -121,7 +123,8 @@ class Patterns(object):
           self.isInvalidFreeDelete.match(line) is not None or \
           self.isMemoryLoss.match(line) is not None or \
           self.isUseOfUninitialisedValue.match(line) is not None or \
-          self.isSyscallParam.match(line) is not None
+          self.isSyscallParam.match(line) is not None or \
+          self.isNotStackedMalloced.match(line) is not None
 
     def isSourceStart(self, line):
         """Returns true if the given line matches a known error source."""
