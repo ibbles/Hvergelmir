@@ -85,6 +85,7 @@ class Patterns(object):
         self.isMissmatchedFreeDelete = re.compile(".*Mismatched free\(\) / delete / delete \[\]")
         self.isInvalidFreeDelete = re.compile(".*Invalid free\(\) / delete / delete\[\] / realloc\(\)")
         self.isNotStackedMalloced = re.compile(".*Address 0x[0-9A-F]+ is not stack'd, malloc'd or \(recently\) free'd")
+        self.isOverlappingMemcpy = re.compile(".*Source and destination overlap in memcpy")
         print("Not stacked/malloced")
 
         directIndirec = "(?:\([\d,.]+ direct, [\d,.]+ indirect\))? ?"
@@ -124,7 +125,8 @@ class Patterns(object):
           self.isMemoryLoss.match(line) is not None or \
           self.isUseOfUninitialisedValue.match(line) is not None or \
           self.isSyscallParam.match(line) is not None or \
-          self.isNotStackedMalloced.match(line) is not None
+          self.isNotStackedMalloced.match(line) is not None or \
+          self.isOverlappingMemcpy.match(line) is not None
 
     def isSourceStart(self, line):
         """Returns true if the given line matches a known error source."""
