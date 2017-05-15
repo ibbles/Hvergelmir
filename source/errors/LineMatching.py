@@ -111,8 +111,9 @@ class Patterns(object):
         self.isStackAllocation = re.compile(".*" + stackAllocation)
 
         address = "Address 0x[a-fA-F0-9]+ is "
-        block = " a block of size [\d.,]+ "
-        self.isHeapAllocation = re.compile(".*" + address + "\d+ bytes " + memoryLocation + block + memoryOperation)
+        block = " (?:(?:a)|(?:an unallocated)) block of size [\d.,]+ "
+        self.isHeapAllocation = re.compile(".*" + address + "[\d.,]+ bytes " + memoryLocation + block + memoryOperation)
+        self.isArena = re.compile(".*" + address + "[\d.,]+ bytes " + memoryLocation + block + "in arena \"" + ".*" + "\"")
 
     def isErrorStart(self, line):
         """Returns true if the given line matches a known Valgrind error."""
@@ -132,4 +133,5 @@ class Patterns(object):
         """Returns true if the given line matches a known error source."""
 
         return self.isStackAllocation.match(line) is not None or \
-            self.isHeapAllocation.match(line) is not None
+            self.isHeapAllocation.match(line) is not None or \
+            self.isArena.match(line) is not None
