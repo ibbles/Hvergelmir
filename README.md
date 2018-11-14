@@ -86,6 +86,8 @@ The following import statements for external libraryes are used.
 * wx
 * wx.stc
 
+On Ubuntu 18.04 the package containing the wx library is called `python-wxgtk3.0`.
+
 ## Issues ##
 
 Don't know how to properly parse a Valgrind log file. The current approach uses
