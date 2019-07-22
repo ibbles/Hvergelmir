@@ -14,6 +14,9 @@ errors in the leaves and ignore branches that currently aren't of interest. Its
 purpose is to give a bit of overview of where the errors are occurring.
 
 
+![screenshot](screenshot.png "Hvergelmir showing the error produced by the test application.")
+
+
 ## Usage ##
 
 For those with access to bash, the main application is started using the
