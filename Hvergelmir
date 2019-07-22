@@ -3,4 +3,4 @@
 scriptDir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 moduleDir="$scriptDir"/source
 export PYTHONPATH=$PYTHONPATH:"$moduleDir"
-python "$moduleDir"/applications/Hvergelmir.py "$@"
+python2 "$moduleDir"/applications/Hvergelmir.py "$@"
